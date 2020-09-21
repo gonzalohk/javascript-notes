@@ -1,15 +1,16 @@
-// ES6 Ecmascript2015
+// ES6 (Ecmascript 2015)
 // Default params
-functionmyFunction(param1 = 'default', param2) { ... }
+function myFunction(param1 , param2= 'default') { return `${param1} ${param2}`}
+console.log(myFunction("String example"));
 
-// Concatenación
+//Concatenación
 let stringOne = 'what\'s up,';
 let stringTwo = 'dude';
 console.log(`${stringOne} ${stringTwo}`)// what's up, dude
 
 //Let, const 
-let variable1; // Block scope
-const constant1; // Block scope and constant
+let variableOne; // Block scope
+const constantOne; // Block scope and constant
 
 //Multilinea
 const stringMultiline = `This is a multi-
@@ -20,69 +21,63 @@ console.log(stringMultiline);
 const array = ['item1', 'item2'];
 const array2 = ['item3', 'item4'];
 const allArrays = [...array, ...array2] // ['item1', 'item2' , 'item3', 'item4']
+console.log(allArrays);
 
-//Destructuration
+//Desestructuración
 const object = {
-	name: 'manuel',
-	age: 24,
-	country: 'PE',
+	name: 'Gonzalo',
+	age: 28,
+	country: 'BO',
 };
-const { name, age } = object; // 'manuel', 24
+const { name, age } = object; // 'Gonzalo', 28
 
-//Arrow functions
+//Arrow function
 //const myFunction = (params) => { ... };
-const square = num => num * num; // returns num * num
-console.log(square(5))//25
+const square = num => num * num; 
+console.log(square(5)) //25
 
 //Parámetros en objetos
-const name = 'manuel';
-const age = 24,
-const object = { name, age }; // { name: 'manuel', age: 24 }
+const name = 'Gonzalo';
+const age = 28;
+const object = { name, age }; // { name: 'Gonzalo', age: 28 }
 
-//Promesas
-const myPromise = () => newPromise((resolve, reject) => {
+//Promises
+const myPromise = new Promise((resolve, reject) => {
 	if (success) { // Make some logic to capture when the promise have success
 		return resolve(succesfullResponse);
 	}
 	return reject(failedResponse);
-}
+})
+const doSomething= () => {console.log("Success")};
+const doSomethingWithError= () => {console.log("Fail")};
 myPromise
 	.then(response => doSomething)
 	.catch(error => doSomethingWithError);
 
 //Clases
-
 class myClass{
 	constructor(param1, param2) {
 		this.param1 = param1;
 		this.param2 = param2;
 	}
-
 	sum() {
-		returnthis.param1 + this.param2
+		return this.param1 + this.param2
 	}
 }
-
 const calc = new myClass(2, 2);
-calc.sum(); // 4
+console.log(calc.sum()); // 4
 
 //Generadores
-
 function* myGenerator () {
-	yield'Paradise';
-	yield'city';
+	yield'Hi! ';
+	yield'dude';
 }
-
 const generatorHello = myGenerator();
 console.log(generatorHello.next());
 console.log(generatorHello.next());
 console.log(generatorHello.next());
 
-/* { value: 'Paradise ', done: false }
-{ value: 'city', done: false }
-{ value: undefined, done: true } */
-
-// FIBONACCI
+//Generadores - Fibonacci
 function* fibonacci() {
     let a = -1;
     let b = 1;
@@ -94,20 +89,15 @@ function* fibonacci() {
       b = fib;
     }
   }
-  
-  // Instanciamos el generador
- const fiboGenerator = fibonacci();
-  
-  // Obtenemos los primero 10 numeros de la serie de Fibonacci
-  for (let i = 0; i < 10; i++) {
-    console.log(`${i} -> ${fiboGenerator.next().value}`);
-  }
+const fiboGenerator = fibonacci();//Instanciamos el generador
+for (let i = 0; i < 10; i++) {//Obtenemos los primero 10 numeros de la serie
+	console.log(`${i} -> ${fiboGenerator.next().value}`);
+}
 
 //Módulos
-// En module.js
-const hello = () => console.log('Welcome to the jungle');
+//En module.js
+const hello = () => console.log('I am a function in module.js');
 export default hello;
-
-// En index.js
+//En index.js
 import hello from'./module.js';
-hello(); // 'Welcome to the jungle'
+hello(); //'I am a function in module.js'
